@@ -1,8 +1,8 @@
 
 import textrazor
-import pandas as pd
-from typing import List, Tuple, TextIO
-from pandas import DataFrame
+#import pandas as pd
+from typing import List, Tuple, TextIO, Dict
+#from pandas import DataFrame
 
 # def key_words(text: TextIO):
 #     text.readline()
@@ -63,7 +63,8 @@ def createDictionary(words: List[str]) -> dict:
 # removes the rows from the dictionary that contain fluff words
 def dropFluffWords(newDict: dict, fluff: List[str]) -> dict:
     for i in range(len(fluff)):
-        del newDict[fluff[i]]
+        if fluff[i] in newDict:
+            del newDict[fluff[i]]
         #newDict.del(fluff[i])
 
     return newDict
