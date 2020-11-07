@@ -2,14 +2,7 @@
 import textrazor
 import pandas as pd
 from typing import List, Tuple, TextIO
-import xlwt
-import xlrd
 from pandas import DataFrame
-from xlwt import Workbook
-
-# creates a workbook and then a sheet for our data set of words
-wb = Workbook()
-sheet1 = wb.add_sheet('Sheet 1')
 
 # def key_words(text: TextIO):
 #     text.readline()
@@ -27,65 +20,59 @@ sheet1 = wb.add_sheet('Sheet 1')
 #         print (entity.id, entity.relevance_score, entity.confidence_score,
 #                entity.freebase_types)
 
-# returns a list of the frequencies of each word in the file
-def getFrequencies(words: List[str]) -> List[int]:
-    frequencies = []
-    wordList = []
 
+frequencies = []
+wordList = []
+
+# creates a dictionary from the words and frequencies we extracted
+# simultaneously creates a list of frequencies and single instances of words
+def createDictionary(words: List[str]) -> dict:
 
     for i in range(len(words)):
         if wordList.count(words[i]) == 0:
             frequencies.append(words.count(words[i]))
             wordList.append(words[i])
 
-    return frequencies
+    zip_iterator = zip(wordList, frequencies)
 
-# returns a list of all the words that show up in the file
-def getWords(words: List[str]) -> List[str]:
-    wordList = []
+    newDict = dict(zip_iterator)
 
-    for i in range(len(words)):
-        if wordList.count(words[i]) == 0:
-            wordList.append(words[i])
-
-    return wordList
+    return newDict
 
 
-# creates a data set from the words and frequencies we extracted
-def createDataSet(words: List[str], frequencies: List[int]):
-
-    dataSet = {'Word': words, 'Frequency': frequencies}
-
-    df = pd.DataFrame(dataSet, columns=['Word', 'Frequency'])
-
-    print(df)
-
-    return df
-
-
+# # creates a data set from the words and frequencies we extracted
+# def createDataSet(words: List[str], frequencies: List[int]):
+#
+#     dataSet = {'Word': words, 'Frequency': frequencies}
+#
+#     df = pd.DataFrame(dataSet, columns=['Word', 'Frequency'])
+#
+#     print(df)
+#
+#     return df
 
 
-# removes the rows from the data frame  SDFlj af that contain fluff words
-def dropFluffWords(df: DataFrame, fluff: List[str]):
+# # removes the rows from the data frame that contain fluff words
+# def dropFluffWords(df: DataFrame, fluff: List[str]):
+#     for i in range(len(fluff)):
+#         df = df[df.Word != fluff[i]] #not a big fan of this because it seems like an expensive operation
+#         #df.drop(fluff[i])
+#
+#     return df
+
+# removes the rows from the dictionary that contain fluff words
+def dropFluffWords(newDict: dict, fluff: List[str]) -> dict:
     for i in range(len(fluff)):
-        df = df[df.Word != fluff[i]] #not a big fan of this because it seems like an expensive operation
-        #df.drop(fluff[i])
+        del newDict[fluff[i]]
+        #newDict.del(fluff[i])
 
-    return df
+    return newDict
 
 if __name__ == '__main__':
     wordsss = ["poop", "sock", "poop", "sock", "poop", "kobi", "drav", "liam", "max", "max", "max", "max", "max is lame", "max is a poopoo"]
     fluff = ["poop", "max"]
 
-    frequencies = getFrequencies(wordsss)
-
-    print(frequencies)
-
-    words = getWords(wordsss)
-
-    print(words)
-
-    df = createDataSet(words, frequencies)
+    df = createDictionary(wordsss)
 
     df = dropFluffWords(df, fluff)
 
