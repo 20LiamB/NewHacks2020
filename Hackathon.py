@@ -70,7 +70,6 @@ def createDataSet(words: List[str], frequencies: List[int]):
 #     print(words)
 #
 #     createDataSet(words, frequencies)
-    return lst
 
 '''
 lit = file_to_list('Stop Words.txt')
