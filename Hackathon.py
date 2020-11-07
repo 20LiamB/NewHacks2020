@@ -4,6 +4,7 @@ import pandas as pd
 from typing import List, Tuple, TextIO
 import xlwt
 import xlrd
+from pandas import DataFrame
 from xlwt import Workbook
 
 # creates a workbook and then a sheet for our data set of words
@@ -59,29 +60,31 @@ def createDataSet(words: List[str], frequencies: List[int]):
 
     print(df)
 
-# if __name__ == '__main__':
-#     wordsss = ["poop", "sock", "poop", "sock", "poop", "kobi", "drav", "liam", "max", "max", "max", "max", "max is lame", "max is a poopoo"]
-#     frequencies = getFrequencies(wordsss)
-#
-#     print(frequencies)
-#
-#     words = getWords(wordsss)
-#
-#     print(words)
-#
-#     createDataSet(words, frequencies)
+    return df
 
-'''
-lit = file_to_list('Stop Words.txt')
+# removes the rows from the data frame that contain fluff words
+def dropFluffWords(df: DataFrame, fluff: List[str]):
+    for i in range(len(fluff)):
+        df = df[df.Word != fluff[i]] #not a big fan of this because it seems like an expensive operation
+        #df.drop(fluff[i])
 
-textrazor.api_key = "cc40b9a7aad01b09dbc862b78e776c5b81b105a11f10939377d44bc3"
-client = textrazor.TextRazor(extractors=["entities", "topics"])
-client.set_cleanup_mode("cleanHTML")
-client.set_classifiers(["textrazor_newscodes"])
+    return df
 
-for line in lit:
-    response = client.analyze(line)
-    for entity in response.entities():
-        print (entity.id, entity.relevance_score, entity.confidence_score, 
-               entity.freebase_types)
-'''
+if __name__ == '__main__':
+    wordsss = ["poop", "sock", "poop", "sock", "poop", "kobi", "drav", "liam", "max", "max", "max", "max", "max is lame", "max is a poopoo"]
+    fluff = ["poop", "max"]
+
+    frequencies = getFrequencies(wordsss)
+
+    print(frequencies)
+
+    words = getWords(wordsss)
+
+    print(words)
+
+    df = createDataSet(words, frequencies)
+
+    df = dropFluffWords(df, fluff)
+
+    print(df)
+
