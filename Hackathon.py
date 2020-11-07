@@ -62,7 +62,10 @@ def createDataSet(words: List[str], frequencies: List[int]):
 
     return df
 
-# removes the rows from the data frame that contain fluff words
+
+
+
+# removes the rows from the data frame  SDFlj af that contain fluff words
 def dropFluffWords(df: DataFrame, fluff: List[str]):
     for i in range(len(fluff)):
         df = df[df.Word != fluff[i]] #not a big fan of this because it seems like an expensive operation
