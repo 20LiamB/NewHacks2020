@@ -10,12 +10,13 @@ from typing import List
 
 # returns a list of the words with high frequencies
 # assume that the list of frequencies is in order
-def return_frequency_words(dictionary: dict) -> List[str]:
+def return_frequency_words(dictionary: dict) -> dict:
     length = len(dictionary)
     len_highf = length // 3  # assuming list of frequencies is in decreasing order
-    hf_words = []
-    for key in range(0, len_highf):
-        hf_words.append(list(dictionary)[key])
+    hf_words = {}
+    for i in dictionary:
+        #hf_words.update(dictionary[i])
+        hf_words[i] = dictionary[i]
     return hf_words
 
 # return the sentences containing words from the highest frequency word list
