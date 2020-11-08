@@ -1,0 +1,27 @@
+## Inspiration
+
+Comparing notes amongst group members in preparation for an exam consumes lots of precious time. This process requires lengthy discussions to determine which notes are most important, and which are less important to know. During the pandemic, most of students' work has become online or at least on their computers. It's difficult to analyze one's own notes, let alone one's digital notes. We feel it is important to facilitate this process.
+
+## What it does
+
+Our program reads text files and looks for frequently used key words, and outputs a list of all of the key words in descending order of frequency appeared in text file visualised in the form of a bar graph. With this information, the group can form more educated decisions about what to study next. For example, They can see that they all have a solid understanding of one concept because it has appeared frequently amongst their notes, likewise, they could also spot gaps in their knowledge by looking into which key phrases appeared the least. With this information the user can make the most out of their study time. 
+
+## How we built it
+
+We used Python to manipulate a text file and the strings it contains. Our methods read the file, compile a list of important words, and produces a visualization of the frequency these words appear. We utilised arrays and dictionaries to organize our findings. With these results, we generated a bar graph of the ten most important frequently appearing words using MATLAB.
+
+## Challenges we ran into
+
+Since we were working as a group of four, we needed a way to simultaneously collaborate on our project. We chose GitHub to share work amongst ourselves. Due to our lack of experience in coding, we ran into many errors when trying to merge our branches. Furthermore, a couple of our members had little to no experience with python. This was a great way for us to get started; however, this resulted in a slow start in the project building process. We spent a lot of time learning how to code rather than actually coding. Even with these challenges, we were able to create a final product. 
+
+## Accomplishments that we're proud of
+
+We're proud of improving our programming arsenal and Python knowledge. Additionally, the four of us bonded over spending hours straight debugging small errors clogging our project and hindering our progress. In the end, we're satisfied with our results and proud of how far we've come during the past day.
+
+## What we learned
+
+During the past day, the four of us were able to immerse ourselves in Computer Science, learning many things along the way. We collectively improved our Python skills, expanding our knowledge in the coding language and our  strategies in coding. Furthermore, we were able to learn the basics of MATLAB and GitHub, which were entirely new concepts for us before this Hackathon. 
+ 
+## What's next for NimbleNotes
+
+We're planning on improving our project to cover more than just the simple features we have right now. We hope to have method of running our program that's more formal than running through an IDE. We believe that our app has potential to be useful for students, especially during this time of social isolation.
